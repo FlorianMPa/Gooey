@@ -28,7 +28,7 @@ class FlatLayout(wx.Panel):
     super(FlatLayout, self).__init__(*args, **kwargs)
     self.SetDoubleBuffered(True)
 
-    self.main_content = ConfigPanel(self, widgets=self._build_spec['widgets'], opt_cols=self._build_spec['num_optional_cols'])
+    self.main_content = ConfigPanel(self, widgets=self._build_spec['widgets'], req_cols=self._build_spec['num_required_cols'], opt_cols=self._build_spec['num_optional_cols'])
 
     sizer = wx.BoxSizer(wx.HORIZONTAL)
     sizer.Add(self.main_content, 3, wx.EXPAND)
@@ -71,7 +71,7 @@ class ColumnLayout(wx.Panel):
   def build_panels(self, build_spec):
     panels = OrderedDict()
     for panel_name in self._build_spec['widgets'].keys():
-      panel = ConfigPanel(self, widgets=self._build_spec['widgets'][panel_name], opt_cols=self._build_spec['num_optional_cols'], title=panel_name.upper())
+      panel = ConfigPanel(self, widgets=self._build_spec['widgets'][panel_name], req_cols=self._build_spec['num_required_cols'], opt_cols=self._build_spec['num_optional_cols'], title=panel_name.upper())
       panels[panel_name] = panel
       panel.Hide()
     return panels
